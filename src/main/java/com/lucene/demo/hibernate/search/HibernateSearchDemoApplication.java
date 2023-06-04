@@ -19,11 +19,11 @@ public class HibernateSearchDemoApplication {
 	/**
 	 * Creation of the bean that will create all Lucene indexes
 	 */
-//	@Bean
-//	public ApplicationRunner buildIndex(SearchIndexBuild searchIndexBuild) {
-//		return (ApplicationArguments args) -> {
-//			searchIndexBuild.indexPersistedData();
-//		};
-//	}
+	@Bean
+	public ApplicationRunner buildIndex(SearchIndexBuild searchIndexBuild) {
+		return (ApplicationArguments args) -> {
+			searchIndexBuild.indexPersistedData();
+		};
+	}
 
 }

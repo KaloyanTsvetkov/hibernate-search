@@ -21,6 +21,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
 
 @Getter
 @Setter
@@ -39,9 +41,11 @@ public class Tag implements Serializable {
     @Column(name = "tag_id")
     private int tagId;
 
+    @Field
     @Column(name = "tag_name", nullable = false)
     private String tagName;
 
+    @ContainedIn
     @ManyToMany
     @JoinTable(name = "recipe_tag",
             joinColumns = @JoinColumn(name = "tag_id"),

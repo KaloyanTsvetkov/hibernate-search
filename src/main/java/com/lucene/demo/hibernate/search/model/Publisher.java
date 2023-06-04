@@ -19,6 +19,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
 
 @Getter
 @Setter
@@ -37,9 +39,11 @@ public class Publisher implements Serializable {
     @Column(name = "publisher_id", nullable = false)
     private Integer publisherId;
 
+    @Field
     @Column(name = "publisher_name", nullable = false)
     private String publisherName;
 
+    @ContainedIn
     @OneToMany(mappedBy = "publisher")
     private Set<Book> books = new LinkedHashSet<>();
 }

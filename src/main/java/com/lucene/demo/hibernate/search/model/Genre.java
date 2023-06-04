@@ -20,6 +20,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
 
 @Getter
 @Setter
@@ -36,9 +38,11 @@ public class Genre implements Serializable {
     @Column(name = "genre_id")
     private int genreId;
 
+    @Field
     @Column(name = "genre_name")
     private String genreName;
 
+    @ContainedIn
     @ManyToMany
     @JoinTable(name = "book_genres",
             joinColumns = @JoinColumn(name = "genre_id"),

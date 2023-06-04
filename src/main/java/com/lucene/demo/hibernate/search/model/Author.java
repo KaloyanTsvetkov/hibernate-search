@@ -21,6 +21,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import org.hibernate.search.annotations.ContainedIn;
+import org.hibernate.search.annotations.Field;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -36,15 +39,19 @@ public class Author implements Serializable {
     @Column(name = "author_id", nullable = false)
     private Integer authorId;
 
+    @Field
     @Column(name = "first_name")
     private String firstName;
 
+    @Field
     @Column(name = "middle_name")
     private String middleName;
 
+    @Field
     @Column(name = "last_name")
     private String lastName;
 
+    @ContainedIn
     @ManyToMany
     @JoinTable(
             name = "authors_books",
