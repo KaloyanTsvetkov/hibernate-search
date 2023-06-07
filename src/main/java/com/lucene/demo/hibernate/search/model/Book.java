@@ -26,6 +26,7 @@ import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.IndexedEmbedded;
+import org.hibernate.search.annotations.NumericField;
 import org.hibernate.search.annotations.SortableField;
 import org.hibernate.search.annotations.Store;
 
@@ -42,9 +43,11 @@ public class Book implements Serializable {
     @Serial
     private static final long serialVersionUID = 8705240176508100999L;
 
-    @SortableField
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Field(name = "bookId_sort")
+    @SortableField(forField = "bookId_sort")
+//    @SortableField //The document ID is always stored as a string, which will lead to strange behavior
     @Column(name = "book_id", nullable = false)
     private Integer bookId;
 
@@ -56,7 +59,6 @@ public class Book implements Serializable {
     @Column(name = "isbn", nullable = false)
     private String isbn;
 
-    @Field(index = YES, analyze = Analyze.YES, store = Store.NO)
     @Column(name = "published_date", nullable = false)
     private java.sql.Date publishedDate;
 
@@ -64,6 +66,7 @@ public class Book implements Serializable {
     private Integer totalPages;
 
     @Field(index = YES, analyze = Analyze.YES, store = Store.NO)
+    @NumericField
     @Column(name = "rating")
     private Double rating;
 
